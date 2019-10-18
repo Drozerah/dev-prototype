@@ -2,6 +2,7 @@
 {
     // Live Server
     // "liveServer.settings.root": "./index.html",
+    "liveServer.settings.host": "localhost",
     // -----------
     // live Sass Compiler
     "liveSassCompile.settings.showOutputWindow": false,
@@ -45,6 +46,7 @@
         "statusBarItem.hoverBackground": "#3399ff",
         "statusBar.foreground": "#e7e7e7"
     },
-    "peacock.color": "#007fff"
+    "peacock.color": "#007fff",
+    "liveServer.settings.port": 5501
     // -------
 }
