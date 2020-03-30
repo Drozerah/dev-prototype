@@ -38,7 +38,7 @@ const gitIgnoreContent = `# Ignored folders:
 
 # Ignored files:
 `
-// create .gitignore fule
+// create .gitignore file
 fs.writeFile(gitIgnoreFile, gitIgnoreContent, err => {
   if (err) throw err
   console.log(`${gitIgnoreFile} - created!`)
