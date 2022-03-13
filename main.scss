@@ -2,6 +2,50 @@
 // @import './scss/utils';
 // @import './scss/responsive';
 
+// colors
+$blueviolet: blueviolet;
+$light-grey: #E7E7E7;
+// --------------------------------------------------------------------------------
+
+// Typographie
+$base-font-size: 16px;
+$base-font-family: monospace;
+// --------------------------------------------------------------------------------
+
+// Mixins
+@mixin square($value) {
+  width: $value;
+  height: $value;
+}
+
+// usage
+// .myClass{
+  //   @include square(50px); // mixin
+  // }
+  
+// mixins
+@mixin transition($property, $duration) {
+  transition-property: $property;
+  transition-duration: $duration;
+  transition-timing-function: linear;
+}
+// --------------------------------------------------------------------------------
+  
+// Functions
+
+// convert pixel to rem
+@function rem($value) {
+  @return $value / $base-font-size * 1rem;
+}
+
+// usage
+// .myClass{
+  //   font-size: rem(28px); // 1.75rem
+  // }
+  
+// --------------------------------------------------------------------------------
+
+// Reset
 *,
 *::before,
 *::after {
@@ -9,6 +53,9 @@
   margin: 0px; // remove default browser margin
   padding: 0px; // remove default browser padding
 }
+// --------------------------------------------------------------------------------
+
+// Full Page Size
 
 html {
   // html element with no set height will auto adjuste according to the body height
@@ -18,7 +65,22 @@ html {
 body {
   min-height: 100vh; // minimum full viewport height
   width: 100%; // full viewport width
+}
+// --------------------------------------------------------------------------------
+
+// Page Styles
+
+body {
   display: flex;
   align-items: center;
   flex-direction: column;
+  justify-content: center;
+  font-family: $base-font-family; // var
+  background-color: $light-grey; // var
+  font-size: rem(16px); // fn
 }
+
+h1{
+  color: $blueviolet; // var
+}
+// --------------------------------------------------------------------------------

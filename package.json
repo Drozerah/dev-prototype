@@ -1,0 +1,29 @@
+{
+  "name": "dev-prototype",
+  "version": "1.0.0",
+  "description": "> usage",
+  "main": "app.js",
+  "bin": {
+    "dev-prototype": "prepare.js"
+  },
+  "scripts": {
+    "build": "gulp build",
+    "dev": "gulp dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Drozerah/dev-prototype.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Drozerah/dev-prototype/issues"
+  },
+  "homepage": "https://github.com/Drozerah/dev-prototype#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-esbuild": "^0.10.2"
+  }
+}
