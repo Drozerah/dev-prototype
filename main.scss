@@ -35,7 +35,7 @@ $base-font-family: monospace;
 
 // convert pixel to rem
 @function rem($value) {
-  @return $value / $base-font-size * 1rem;
+  @return calc($value / $base-font-size) * 1rem;
 }
 
 // usage
