@@ -14,22 +14,32 @@ const gulpEsbuild = require('gulp-esbuild')
 const date = new Date()
 const hash = date.getTime()
 const year = date.getFullYear()
-const _path = {
-  output_dir: path.join('.', 'dist'),
+
+const ouputDir = path.join('.', 'dist')
+const config = {
+  html: {
+    src: path.join('.', 'index.html'),
+    dest: path.join('.', ouputDir,)
+  },
+  scss: {
+    src: path.join('.', 'main.scss'),
+    dest: path.join('.', ouputDir, 'css')
+  },
   js: {
     outfile: 'app.bundle.js',
     src: path.join('.', 'app.js'),
     dest: path.join('.', 'src', 'js')
   }
 }
+
 /**
  * Gulp tasks 
  */
 // esbuild
 gulp.task('esbuild', done => {
-  src(_path.js.src)
+  src(config.js.src)
     .pipe(gulpEsbuild({
-      outfile: _path.js.outfile,
+      outfile: config.js.outfile,
       bundle: true,
       sourcemap: true,
       ignoreAnnotations: true,
@@ -46,7 +56,7 @@ gulp.task('esbuild', done => {
 * https://gist.github.com/Drozerah/c21e5763d4d92bc429b995854e27f4ac
 * Copyright © ${year}
 */`}}))
-  .pipe(dest(_path.js.dest))
+  .pipe(dest(config.js.dest))
   return done()
 })
 /**
@@ -57,5 +67,5 @@ gulp.task('build', series('esbuild'))
  * GULP WATCHERS 
  */
 gulp.task('dev', () => {
-  watch(_path.js.src, series('esbuild'))
+  watch(config.js.src, series('esbuild'))
 })
