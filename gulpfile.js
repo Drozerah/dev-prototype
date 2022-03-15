@@ -11,6 +11,9 @@ const gulpEsbuild = require('gulp-esbuild')
 const sass = require('gulp-sass')(require('sass'))
 const cleanCSS = require('gulp-clean-css')
 const rename = require('gulp-rename')
+const gulpif = require('gulp-if')
+
+console.log(` ${process.env.NODE_ENV}`) // !DEBUG
 /**
  * Variables 
  */
@@ -35,6 +38,9 @@ const config = {
   }
 }
 
+const isProduction = process.env.NODE_ENV === "production"
+const isDevelopment = process.env.NODE_ENV === "development"
+
 /**
  * Gulp tasks 
  */
@@ -44,13 +50,13 @@ gulp.task('esbuild', done => {
     .pipe(gulpEsbuild({
       outfile: config.js.outfile,
       bundle: true,
-      sourcemap: true,
+      sourcemap: isDevelopment,
       ignoreAnnotations: true,
       legalComments: 'none',
-      minify: true,
-      minifyIdentifiers: true,
-      minifyWhitespace: true,
-      minifySyntax: true,
+      minify: isProduction,
+      minifyIdentifiers: isProduction,
+      minifyWhitespace: isProduction,
+      minifySyntax: isProduction,
       format: 'cjs', // common js module
       banner: {
         js: 
@@ -66,8 +72,7 @@ gulp.task('esbuild', done => {
 gulp.task('build:css', (done) => {
   src(config.scss.src)
     .pipe(sass().on('error', sass.logError))
-    // .pipe(cleanCSS())
-    // .pipe(rename('style.css'))
+    .pipe(gulpif(isProduction, cleanCSS())) // minify
     .pipe(dest(config.scss.dest))
   return done()
 })
