@@ -13,7 +13,9 @@ const cleanCSS = require('gulp-clean-css')
 const rename = require('gulp-rename')
 const gulpif = require('gulp-if')
 
-console.log(` ${process.env.NODE_ENV}`) // !DEBUG
+const { NODE_ENV } = process.env
+
+console.log(`NODE_ENV ${NODE_ENV}`) // !DEBUG
 /**
  * Variables 
  */
@@ -38,8 +40,8 @@ const config = {
   }
 }
 
-const isProduction = process.env.NODE_ENV === "production"
-const isDevelopment = process.env.NODE_ENV === "development"
+const isProduction = NODE_ENV === "production"
+const isDevelopment = NODE_ENV === "development"
 
 /**
  * Gulp tasks 

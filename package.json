@@ -21,7 +21,6 @@
     "url": "https://github.com/Drozerah/dev-prototype/issues"
   },
   "homepage": "https://github.com/Drozerah/dev-prototype#readme",
-  "dependencies": {},
   "devDependencies": {
     "cross-env": "^7.0.3",
     "gulp": "^4.0.2",
