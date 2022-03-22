@@ -92,7 +92,6 @@ function watchJS() {
 function watchCSS() {
   watch(config.scss.src, series('build:css'))
 }
-
 gulp.task('dev', parallel(
   'esbuild',
   'build:css',
