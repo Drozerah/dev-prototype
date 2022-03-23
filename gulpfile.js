@@ -12,6 +12,7 @@ const sass = require('gulp-sass')(require('sass'))
 const cleanCSS = require('gulp-clean-css')
 const rename = require('gulp-rename')
 const gulpif = require('gulp-if')
+const plumber = require('gulp-plumber') // prevent pipe breacking
 
 const { NODE_ENV } = process.env
 
@@ -49,6 +50,7 @@ const isDevelopment = NODE_ENV === "development"
 // esbuild
 gulp.task('esbuild', done => {
   src(config.js.src)
+    .pipe(plumber())
     .pipe(gulpEsbuild({
       outfile: config.js.outfile,
       bundle: true,
@@ -73,6 +75,7 @@ gulp.task('esbuild', done => {
 // Build CSS from SCSS
 gulp.task('build:css', (done) => {
   src(config.scss.src)
+    .pipe(plumber())
     .pipe(sass().on('error', sass.logError))
     .pipe(gulpif(isProduction, cleanCSS())) // minify
     .pipe(rename('style.css'))
